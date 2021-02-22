@@ -1,2 +1,17 @@
 # Vue-PARK
-Vue 源码边读边学
+vue 源码解析
+
+
+
+
+
+### 其他
+ - [vue官方源码解读](https://vue-js.com/learn-vue/virtualDOM/patch.html#_2-patch) 
+
+
+
+
+
+
+
+

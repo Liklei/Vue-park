@@ -26,6 +26,7 @@
  * 方法最后返回了`return function patch`这是我们真正打补丁的函数
  * 可以看到最后返回了真实dom`return vnode.elm`
  * 具体diff算法可以结合[文章-详解vue的diff算法](https://www.cnblogs.com/wind-lanyan/p/9061684.html)和源码一起看
+ * [vue中的render函数](https://www.zhihu.com/question/406354817)
 
 
 

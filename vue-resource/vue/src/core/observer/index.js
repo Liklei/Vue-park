@@ -43,6 +43,7 @@ export class Observer {
     this.value = value
     this.dep = new Dep()
     this.vmCount = 0
+    //添加ob属性，标记为响应式
     def(value, '__ob__', this)
     if (Array.isArray(value)) {
       if (hasProto) {
@@ -52,6 +53,7 @@ export class Observer {
       }
       this.observeArray(value)
     } else {
+      //如果是对象通过walk遍历对象，通过defineReactive方法转换为可侦测的对象（响应式）
       this.walk(value)
     }
   }
@@ -139,6 +141,7 @@ export function defineReactive (
   customSetter?: ?Function,
   shallow?: boolean
 ) {
+  // 为每个数据创建一个依赖管理器
   const dep = new Dep()
 
   const property = Object.getOwnPropertyDescriptor(obj, key)
@@ -152,7 +155,7 @@ export function defineReactive (
   if ((!getter || setter) && arguments.length === 2) {
     val = obj[key]
   }
-
+  // 递归子属性，最终全部转换为响应式 
   let childOb = !shallow && observe(val)
   Object.defineProperty(obj, key, {
     enumerable: true,
@@ -160,6 +163,7 @@ export function defineReactive (
     get: function reactiveGetter () {
       const value = getter ? getter.call(obj) : val
       if (Dep.target) {
+        // 在getter中添加依赖
         dep.depend()
         if (childOb) {
           childOb.dep.depend()
@@ -188,6 +192,7 @@ export function defineReactive (
         val = newVal
       }
       childOb = !shallow && observe(newVal)
+      // 在setter中更新依赖
       dep.notify()
     }
   })

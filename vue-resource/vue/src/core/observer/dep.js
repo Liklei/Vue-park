@@ -1,3 +1,4 @@
+
 /* @flow */
 
 import type Watcher from './watcher'
@@ -9,15 +10,16 @@ let uid = 0
 /**
  * A dep is an observable that can have multiple
  * directives subscribing to it.
+ * 依赖管理器
  */
 export default class Dep {
   static target: ?Watcher;
   id: number;
-  subs: Array<Watcher>;
+  subs: Array<Watcher>; 
 
   constructor () {
     this.id = uid++
-    this.subs = []
+    this.subs = [] // 依赖管理数组
   }
 
   addSub (sub: Watcher) {

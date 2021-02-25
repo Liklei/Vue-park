@@ -1,8 +1,14 @@
 
+
 ## vue核心代码
 
 > 数据侦测(响应式数据)
 - [文章-响应式原理](https://blog.csdn.net/qq_30868289/article/details/106690837)
+
+1. 将Data通过Observer类转换成响应式数据
+2. 外界通过watcher类来获取数据时，触发getter将watcher添加到依赖中
+3. 在数据发生变化时，触发setter， 向Dep中的依赖（watcher）发送通知
+4. watcher在接收到通知后，向外界通知从而触发视图等一系列的更新
 
 
 > Diff 算法

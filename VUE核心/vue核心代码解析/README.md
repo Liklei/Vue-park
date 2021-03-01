@@ -22,6 +22,20 @@
 - [文章-render](https://www.zhihu.com/question/406354817)
 
 
+### 其余源码理解
+
+> new Vue()时执行了什么
+
+1. 合并配置项
+2. 初始化生命周期
+3. 初始化时间中心
+4. 初始化渲染
+5. 创建钩子函数beforeCreate 
+6. 初始化Inject
+7. 初始化state (初始化data props watch methods mounted等) 可以获取数据
+8. 初始化provider
+9. 创建钩子函数create
+
 ### 其他
  - [vue技术解密](https://ustbhuangyi.github.io/vue-analysis/v2/reactive/getters.html#%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90)
  - [vue官方源码解读](https://vue-js.com/learn-vue/virtualDOM/patch.html#_2-patch) 
@@ -29,7 +43,7 @@
  - [vue API介绍](https://cn.vuejs.org/v2/guide/syntax.html) 
 
 
- ## 如何运转
+### 如何运转
 
 * js数据劫持响应式改变的是 -> vdom
 * vdom通过patch打补丁 -> 真实dom

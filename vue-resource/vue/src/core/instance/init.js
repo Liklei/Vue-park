@@ -49,7 +49,7 @@ export function initMixin (Vue: Class<Component>) {
     }
     // expose real self
     vm._self = vm
-    initLifecycle(vm)
+    initLifecycle(vm) 
     initEvents(vm)
     initRender(vm)
     callHook(vm, 'beforeCreate')

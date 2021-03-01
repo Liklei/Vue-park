@@ -46,12 +46,12 @@ export default class VNode {
     this.elm = elm
     this.ns = undefined
     this.context = context
-    this.fnContext = undefined
-    this.fnOptions = undefined
+    this.fnContext = undefined //函数式组件对应的Vue实例
+    this.fnOptions = undefined //函数式组件对应的Options选项
     this.fnScopeId = undefined
     this.key = data && data.key
-    this.componentOptions = componentOptions
-    this.componentInstance = undefined
+    this.componentOptions = componentOptions //组件的option选项，如组件的props等
+    this.componentInstance = undefined //组件节点对应的vue实例
     this.parent = undefined
     this.raw = false
     this.isStatic = false
@@ -70,22 +70,23 @@ export default class VNode {
     return this.componentInstance
   }
 }
-
+//创建注释节点
 export const createEmptyVNode = (text: string = '') => {
   const node = new VNode()
   node.text = text
   node.isComment = true
   return node
 }
-
+//创建文本节点
 export function createTextVNode (val: string | number) {
   return new VNode(undefined, undefined, undefined, String(val))
 }
 
-// optimized shallow clone
+// optimized shallow clone（优化浅拷贝）
 // used for static nodes and slot nodes because they may be reused across
 // multiple renders, cloning them avoids errors when DOM manipulations rely
 // on their elm reference.
+//克隆节点
 export function cloneVNode (vnode: VNode): VNode {
   const cloned = new VNode(
     vnode.tag,
@@ -108,6 +109,6 @@ export function cloneVNode (vnode: VNode): VNode {
   cloned.fnOptions = vnode.fnOptions
   cloned.fnScopeId = vnode.fnScopeId
   cloned.asyncMeta = vnode.asyncMeta
-  cloned.isCloned = true
+  cloned.isCloned = true // 新旧节点的唯一区别
   return cloned
 }

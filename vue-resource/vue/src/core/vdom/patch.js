@@ -554,18 +554,18 @@ export function createPatchFunction (backend) {
       if (isDef(i = data.hook) && isDef(i = i.update)) i(oldVnode, vnode)
     }
     
-    if (isUndef(vnode.text)) {// 前置条件以新vnode为参照物，新vnode没有文本属性
-      if (isDef(oldCh) && isDef(ch)) { // 新vnode都有，进行节点对比更新
+    if (isUndef(vnode.text)) {// 前置条件以新vnode为参照物，新vnode没有文本属性; 接下来比较子节点
+      if (isDef(oldCh) && isDef(ch)) { // 新旧子节点都有，进行节点对比更新diff算法
         if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
-      } else if (isDef(ch)) { // 只有新vnode中有，那么直接添加在旧节点中
+      } else if (isDef(ch)) { // 只有新vnode的子节点中有，那么再判断旧子节点是否有文本，有先清空，最后将子节点添加到dom中
         if (process.env.NODE_ENV !== 'production') {
           checkDuplicateKeys(ch)
         }
         if (isDef(oldVnode.text)) nodeOps.setTextContent(elm, '')
         addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue)
-      } else if (isDef(oldCh)) {// 新vnode中没有，只有旧vnode有，直接将节点移除
+      } else if (isDef(oldCh)) {// 新vnode子节点中没有，只有旧vnode子节点有，直接将节点移除
         removeVnodes(oldCh, 0, oldCh.length - 1)
-      } else if (isDef(oldVnode.text)) {//只有旧节点中有文本，但新节点没有，将真实DOM文本设为空
+      } else if (isDef(oldVnode.text)) {//只有旧节点子节点中有文本，但新节点子节点没有，将真实DOM文本设为空
         nodeOps.setTextContent(elm, '')
       }
     } else if (oldVnode.text !== vnode.text) { // 新旧节点都有文本属性，但不同，直接设置真实DOM文本内容

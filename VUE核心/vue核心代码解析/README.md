@@ -14,6 +14,7 @@
 
 > Diff 算法
 
+* 当数据发生改变时，set方法会让调用Dep.notify通知所有订阅者Watcher，订阅者就会调用patch给真实的DOM打补丁，更新相应的视图
 [文章-详解vue的diff算法](https://www.cnblogs.com/wind-lanyan/p/9061684.html)
 
 > 如何运转

@@ -32,7 +32,7 @@ export const emptyNode = new VNode('', {}, [])
 
 const hooks = ['create', 'activate', 'update', 'remove', 'destroy']
 
-function sameVnode (a, b) {
+function sameVnode (a, b) { // 判断是否为相同节点
   return (
     a.key === b.key && (
       (
@@ -402,7 +402,7 @@ export function createPatchFunction (backend) {
     }
   }
   
-  function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
+  function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {//diff的核心算法触点
     let oldStartIdx = 0
     let newStartIdx = 0
     let oldEndIdx = oldCh.length - 1
@@ -719,7 +719,6 @@ export function createPatchFunction (backend) {
       const isRealElement = isDef(oldVnode.nodeType)
       if (!isRealElement && sameVnode(oldVnode, vnode)) {
         // patch existing root node
-        // 不是真实DOM并且虚拟node的新旧节点是一样的，直接移除
         patchVnode(oldVnode, vnode, insertedVnodeQueue, null, null, removeOnly)
       } else {
         if (isRealElement) {

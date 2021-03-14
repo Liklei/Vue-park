@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-03-10 20:29:58
+ * @LastEditTime: 2021-03-14 16:35:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \knowTech\Vue-PARK\VUE核心\vue核心代码解析\README.md
+-->
 
 
 ## vue核心代码
@@ -13,9 +21,26 @@
 4. watcher在接收到通知后，向外界通知从而触发视图等一系列的更新
 
 
-> Diff 算法
+> Diff算法
 
-* 当数据发生改变时，set方法会让调用Dep.notify通知所有订阅者Watcher，订阅者就会调用patch给真实的DOM打补丁，更新相应的视图
+> 当数据发生改变时，set方法会让调用Dep.notify通知所有订阅者Watcher，订阅者就会调用patch给真实的DOM打补丁，更新相应的视图
+
+> diff算法优化策略
+
+1. 新前与旧前
+2. 新后与旧后
+3. 新后与旧前（此种情况发生，涉及移动节点，新前指向的节点，移动到旧后之后）
+4. 新前与旧后（此种情况发生，涉及移动节点，新前指向的节点，移动到旧前之前）
+（命中一种就不再进行命中判断并且指针后移，如果全部没命中就以循环来寻找）
+
+```js
+while(oldChildStart <= oldChildEnd && newChildStart <= newChildEnd) { 
+  // 命中判断结束条件
+  1. 如果旧节点先循环完毕，那么新节点就有要插入的节点（真实DOM）
+  2. 如果新节点先循环完毕，那么老节点有剩余节点，他们是要被删除的节点（真实DOM）
+  
+}
+```
 
 [文章-详解vue的diff算法](https://www.cnblogs.com/wind-lanyan/p/9061684.html)
 
@@ -60,7 +85,7 @@
 
 1. 合并配置项
 2. 初始化生命周期
-3. 初始化时间中心
+3. 初始化事件中心
 4. 初始化渲染
 5. 创建钩子函数beforeCreate 
 6. 初始化Inject

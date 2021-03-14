@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-10 20:29:58
- * @LastEditTime: 2021-03-14 21:20:44
+ * @LastEditTime: 2021-03-14 23:02:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \knowTech\Vue-PARK\VUE核心\vue核心代码解析\README.md
@@ -96,6 +96,13 @@ while(oldChildStart <= oldChildEnd && newChildStart <= newChildEnd) {
 7. 初始化state (初始化data props watch methods mounted等) 可以获取数据
 8. 初始化provider
 9. 创建钩子函数create
+
+
+### 推荐阅读二叉树
+1. [二叉树基础](https://www.jianshu.com/p/bf73c8d50dc2)
+*  结点、树、度、结点关系、深度（层次）
+*  前序遍历（一次访问输出）、中序遍历（二次访问输出）、后序遍历（三次访问输出）
+2. [二叉树的深度优先遍历（DFS）与广度优先遍历（BFS）](https://www.jianshu.com/p/473090b9490d)
 
 ### 其他
  - [vue技术解密](https://ustbhuangyi.github.io/vue-analysis/v2/reactive/getters.html#%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90)
